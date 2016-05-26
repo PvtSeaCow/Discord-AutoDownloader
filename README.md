@@ -19,7 +19,7 @@ Running this bot acts as another login and will keep you online as long as this 
 
 () = Will always be made  
 [] = Will be made when the channel doesn't have lood/lewd/nsfw in the name or the server is not `Pillow Lounge`  
-(ROOT) = The folder the script is in
+(ROOT) = The folder the script is in.  
 This bot may not download every picture  
 
 TODO
