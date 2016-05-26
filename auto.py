@@ -4,7 +4,12 @@ import unicodedata
 
 import json
 import os
-import requests
+try:
+    import requests
+except :
+    import pip
+    pip.main(['install', 'requests'])
+    import requests
 
 from sys import modules
 
@@ -31,21 +36,21 @@ async def on_message(message):
             for pic in message.embeds:
                 thing = str(pic['url']).split('/')
                 try:
-                    await download_file(str(pic['url']), name, str(thing[-1].split('.')[0]), str(thing[-1].split('.')[-1]))
+                    await download_file(str(pic['url']), str(name), str(thing[-1].split('.')[0]), str(thing[-1].split('.')[-1]))
                 except:
                     pass
         elif message.attachments:
             for pic in message.attachments:
                 thing = str(pic['url']).split('/')
                 try:
-                    await download_file(str(pic['url']), name, str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
+                    await download_file(str(pic['url']), (name), str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
                 except:
                     pass
         elif r_image.match(urls[0]):
             for pic in urls:
                 thing = str(pic).split('/')
                 try:
-                    await download_file(str(pic), name, str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
+                    await download_file(str(pic), (name), str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
                 except:
                     pass
         else:
@@ -56,14 +61,14 @@ async def on_message(message):
             for pic in message.embeds:
                 thing = str(pic['url']).split('/')
                 try:
-                    await download_file(str(pic['url']), name, str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
+                    await download_file(str(pic['url']), str(name), str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
                 except:
                     pass
         elif message.attachments:
             for pic in message.attachments:
                 thing = str(pic['url']).split('/')
                 try:
-                    await download_file(str(pic['url']), name, str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
+                    await download_file(str(pic['url']), str(name), str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
                 except:
                     pass
         else:
