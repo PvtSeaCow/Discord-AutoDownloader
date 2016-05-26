@@ -31,4 +31,4 @@ Me ^_^ - for the coding ( ͡° ͜ʖ ͡°)
 
 
 If you have any questions or concerns  
-Join Anime Discord (https://discord.gg/0jsnS27eGHfxNfQ7) and message me
+Join Anime Discord ([Invite Here](https://discord.gg/0jsnS27eGHfxNfQ7)) and message me
