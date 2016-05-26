@@ -1,5 +1,7 @@
 # IMPORTANT
-REQUIRES PYTHON 3.5 64bit, NOTHING ELSE, ANY OTHER VERSION WILL NOT WORK
+REQUIRES PYTHON 3.5 64bit, NOTHING ELSE, ANY OTHER VERSION WILL NOT WORK  
+ALSO REQUIRES REQUESTS  
+- type in command prompt `pip install requests`
 
 1. Edit 'example-credentials.txt' (Login is in plain text, careful)
 2. Rename to 'credentials.txt'
@@ -22,3 +24,11 @@ This bot may not download every picture
 TODO
 ----
 - Add settings to the bot
+
+Credits
+=======
+Me ^_^ - for the coding ( ͡° ͜ʖ ͡°)  
+
+
+If you have any questions or concerns  
+Join Anime Discord (https://discord.gg/0jsnS27eGHfxNfQ7) and message me
