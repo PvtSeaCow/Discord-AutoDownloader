@@ -1,5 +1,7 @@
 # IMPORTANT
-- REQUIRES PYTHON 3.5 64bit, NOTHING ELSE, ANY OTHER VERSION WILL NOT WORK  
+- Requires Python 3.5 64bit, NOTHING ELSE, ANY OTHER VERSION WILL NOT WORK  
+- Requires Discord.py Made By: [Rapptz](https://github.com/Rapptz)
+ - Get from here: [Rapptz/discord.py](https://github.com/Rapptz/discord.py)
 - ALSO REQUIRES REQUESTS  
  - type in command prompt `pip install requests`
 
