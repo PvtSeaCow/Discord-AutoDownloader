@@ -1,14 +1,15 @@
 # IMPORTANT
-REQUIRES PYTHON 3.5 64bit, NOTHING ELSE, ANY OTHER VERSION WILL NOT WORK  
-ALSO REQUIRES REQUESTS  
-- type in command prompt `pip install requests`
+- REQUIRES PYTHON 3.5 64bit, NOTHING ELSE, ANY OTHER VERSION WILL NOT WORK  
+- ALSO REQUIRES REQUESTS  
+ - type in command prompt `pip install requests`
 
+#### Credentials
 1. Edit 'example-credentials.txt' (Login is in plain text, careful)
 2. Rename to 'credentials.txt'
 
 # About
 This is a discord bot that automatically downloads any picture from any of the servers/guilds you are in.  
-### WARNING:  
+#### WARNING:  
 Running this bot acts as another login and will keep you online as long as this bot is on. There is no way to change this because Discord doesn't allow users to be offline and online at the same time (At the moment). ~~Because you are now online with this bot on, ALL notifications will not show up on mobile (Might Change in the future).~~ (Might work now, need to do more testing)
 
 # File Stucture
@@ -22,12 +23,11 @@ Running this bot acts as another login and will keep you online as long as this 
 (ROOT) = The folder the script is in.  
 This bot may not download every picture  
 
-TODO
-----
-- Add settings to the bot
+## TODO
+- [ ] Add settings to the bot
 
-Credits
-=======
+## Credits
+
 Me ^_^ - for the coding ( ͡° ͜ʖ ͡°)  
 
 
