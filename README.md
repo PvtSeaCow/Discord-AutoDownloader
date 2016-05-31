@@ -9,7 +9,7 @@ ALSO REQUIRES REQUESTS
 # About
 This is a discord bot that automatically downloads any picture from any of the servers/guilds you are in.  
 ### WARNING:  
-Running this bot acts as another login and will keep you online as long as this bot is on. There is no way to change this because Discord doesn't allow users to be offline and online at the same time (At the moment). Because you are now online with this bot on, ALL notifications will not show up on mobile (Might Change in the future).
+Running this bot acts as another login and will keep you online as long as this bot is on. There is no way to change this because Discord doesn't allow users to be offline and online at the same time (At the moment). ~~Because you are now online with this bot on, ALL notifications will not show up on mobile (Might Change in the future).~~ (Might work now, need you do more testing)
 
 # File Stucture
 1. This bot will download to the following folders:  
