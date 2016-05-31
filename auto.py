@@ -15,9 +15,22 @@ from sys import modules
 
 client = discord.Client()
 
-f = open('credentials.txt', 'r')
-login_info = f.read().split(':')
-f.close()
+def setup():
+    f = open("credentials.txt", 'w+')
+    email = input('Email: ')
+    password = input('Password: ')
+    f.write(email+':'+password)
+    f.close()
+
+try:
+    f = open('credentials.txt', 'r')
+    login_info = f.read().split(':')
+    f.close()
+except:
+    print('ERROR: \'credentials.txt\' not found!')
+    setup()
+    sleep(5)
+    sys.exit(0)
 
 @client.async_event
 async def on_ready():
