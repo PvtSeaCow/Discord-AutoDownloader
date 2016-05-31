@@ -37,6 +37,7 @@ async def on_ready():
     print('------')
     print('Auto Downloader\nBy Moe Sea Cow\nLogged in as ['+client.user.name+' (ID: "'+client.user.id+'")]')
     print('------')
+    await client.change_status(idle=True)
 
 @client.async_event
 async def on_message(message):
