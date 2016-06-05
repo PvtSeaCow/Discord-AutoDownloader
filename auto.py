@@ -1,19 +1,36 @@
-import discord
+import pip
+try:
+    import discord
+except:
+    pip.main(['install', 'git+https://github.com/Rapptz/discord.py@async'])
+    sleep(2)
+    import discord
 import asyncio
 import unicodedata
 
 import json
 import os
+import re
+import subprocess
 try:
     import requests
 except :
     import pip
     pip.main(['install', 'requests'])
     import requests
+try:
+    import imgurpython
+    from imgurpython import ImgurClient
+except:
+    pip.main(['install', 'imgurpython'])
+    sleep(2)
+    import imgurpython
+    from imgurpython import ImgurClient
 
 from sys import modules
 
 client = discord.Client()
+imgur = ImgurClient('7a8c6a9c6a8b656','dc0cbbfc1d31c65c6c11ac9dff7fbd2001b837f3')
 
 def setup():
     f = open("credentials.txt", 'w+')
@@ -34,59 +51,95 @@ except:
 
 @client.async_event
 async def on_ready():
+    subprocess.call('cls',shell=True)
     print('------')
-    print('Auto Downloader\nBy Moe Sea Cow\nLogged in as ['+client.user.name+' (ID: "'+client.user.id+'")]')
+    print('Currently logged in as ['+client.user.name+' (ID: "'+client.user.id+'")]')
+    print('Number of Servers Connected: '+str(len(list(client.servers)))+'\nNumbers of DMs: '+str(len(list(client.private_channels))))
     print('------')
     await client.change_status(idle=True)
 
+
 @client.async_event
 async def on_message(message):
-    if (not message.channel.is_private) and ((message.embeds) or (message.attachments)) and (not message.channel.is_default):
-        if 'nsfw' in message.channel.name or 'fap' in message.channel.name or 'lood' in message.channel.name or 'lewd' in message.channel.name or 'illow ' in str(message.server.name):
-            name = str(message.server.name)+'\\'+str(message.channel.name)
-        else:
-            name = str(message.server.name)+'\\'+str(message.channel.name)+'\\'+str(message.author.name)
-        if message.embeds:
-            for pic in message.embeds:
-                thing = str(pic['url']).split('/')
-                try:
-                    await download_file(str(pic['url']), str(name), str(thing[-1].split('.')[0]), str(thing[-1].split('.')[-1]))
-                except:
-                    pass
-        elif message.attachments:
-            for pic in message.attachments:
-                thing = str(pic['url']).split('/')
-                try:
-                    await download_file(str(pic['url']), (name), str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
-                except:
-                    pass
-        elif r_image.match(urls[0]):
-            for pic in urls:
-                thing = str(pic).split('/')
-                try:
-                    await download_file(str(pic), (name), str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
-                except:
-                    pass
-        else:
-            print('ERROR!! |'+str(pic['url'])+'|'+name+'|'+str(thing[-1].split('.')[-2])+'|'+str(thing[-1].split('.')[-1]))
-    elif (message.channel.is_private) and (message.embeds or message.attachments):
-        name = '@pms\\'+str(message.channel.user)
-        if message.embeds:
-            for pic in message.embeds:
-                thing = str(pic['url']).split('/')
-                try:
-                    await download_file(str(pic['url']), str(name), str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
-                except:
-                    pass
-        elif message.attachments:
-            for pic in message.attachments:
-                thing = str(pic['url']).split('/')
-                try:
-                    await download_file(str(pic['url']), str(name), str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
-                except:
-                    pass
-        else:
-            print('ERROR!! |'+str(pic['url'])+'|'+name+'|'+str(thing[-1].split('.')[-2])+'|'+str(thing[-1].split('.')[-1]))
+    imgurlink = re.findall("(https?)\:\/\/(?:i\.)?(www\.)?(?:m\.)?imgur\.com\/(gallery\/|a\/|r\/[a-z]+)?(?:\/)?([a-zA-Z0-9]+)(#[0-9]+)?(?:\.gifv)?", message.content)
+    imgurmatch = re.match("(https?)\:\/\/(?:i\.)?(www\.)?(?:m\.)?imgur\.com\/(gallery\/|a\/|r\/[a-z]+)?(?:\/)?([a-zA-Z0-9]+)(#[0-9]+)?(?:\.gifv)?", message.content)
+    try:
+        if imgurmatch:
+            try:
+                for lnk in imgurlink:
+                    if 'nsfw' in message.channel.name or 'fap' in message.channel.name or 'lood' in message.channel.name or 'lewd' in message.channel.name or 'illow ' in str(message.server.name):
+                        name = str(message.server.name)+'\\'+str(message.channel.name)+'\\@imgur\\'+str(imgur.get_album(lnk[3]).id)
+                    else:
+                        name = str(message.server.name)+'\\'+str(message.channel.name)+'\\'+str(message.author.name)+'\\@imgur\\'+str(imgur.get_album(lnk[3]).id)
+                    for pic in imgur.get_album_images(lnk[3]):
+                        if pic.animated:
+                            thing = str(pic.link).split('/')
+                            await download_file(str(pic.webm), str(name), str(thing[-1].split('.')[-2]), 'webm')
+                        else:
+                            thing = str(pic.link).split('/')
+                            await download_file(str(pic.link), str(name), str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
+            except:
+                for lnk in imgurlink:
+                    if 'nsfw' in message.channel.name or 'fap' in message.channel.name or 'lood' in message.channel.name or 'lewd' in message.channel.name or 'illow ' in str(message.server.name):
+                        name = str(message.server.name)+'\\'+str(message.channel.name)+'\\@imgur\\'+str(imgur.get_image(lnk[3]).id)
+                    else:
+                        name = str(message.server.name)+'\\'+str(message.channel.name)+'\\'+str(message.author.name)+'\\@imgur\\'+str(imgur.get_image(lnk[3]).id)
+                    pic = imgur.get_image(lnk[3])
+                    if pic.animated:
+                        thing = str(pic.link).split('/')
+                        await download_file(str(pic.webm), str(name), str(thing[-1].split('.')[-2]), 'webm')
+                    else:
+                        thing = str(pic.link).split('/')
+                        await download_file(str(pic.link), str(name), str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
+        elif (not message.channel.is_private) and ((message.embeds) or (message.attachments)) and (not message.channel.is_default) and (not imgurmatch):
+            if 'nsfw' in message.channel.name or 'fap' in message.channel.name or 'lood' in message.channel.name or 'lewd' in message.channel.name or 'illow ' in str(message.server.name):
+                name = str(message.server.name)+'\\'+str(message.channel.name)
+            else:
+                name = str(message.server.name)+'\\'+str(message.channel.name)+'\\'+str(message.author.name)
+            if message.embeds:
+                for pic in message.embeds:
+                    thing = str(pic['url']).split('/')
+                    try:
+                        await download_file(str(pic['url']), str(name), str(thing[-1].split('.')[0]), str(thing[-1].split('.')[-1]))
+                    except:
+                        pass
+            elif message.attachments:
+                for pic in message.attachments:
+                    thing = str(pic['url']).split('/')
+                    try:
+                        await download_file(str(pic['url']), (name), str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
+                    except:
+                        pass
+            elif r_image.match(urls[0]):
+                for pic in urls:
+                    thing = str(pic).split('/')
+                    try:
+                        await download_file(str(pic), (name), str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
+                    except:
+                        pass
+            else:
+                print('ERROR!! |'+str(pic['url'])+'|'+name+'|'+str(thing[-1].split('.')[-2])+'|'+str(thing[-1].split('.')[-1]))
+        elif (message.channel.is_private) and (message.embeds or message.attachments) and (not imgurmatch):
+            name = '@pms\\'+str(message.channel.user)
+            if message.embeds:
+                for pic in message.embeds:
+                    thing = str(pic['url']).split('/')
+                    try:
+                        await download_file(str(pic['url']), str(name), str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
+                    except:
+                        pass
+            elif message.attachments:
+                for pic in message.attachments:
+                    thing = str(pic['url']).split('/')
+                    try:
+                        await download_file(str(pic['url']), str(name), str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
+                    except:
+                        pass
+            else:
+                print('ERROR!! |'+str(pic['url'])+'|'+name+'|'+str(thing[-1].split('.')[-2])+'|'+str(thing[-1].split('.')[-1]))
+    except Exception as e:
+        raise
+        print(message.server.name+': '+message.author.name+': '+message.content)
 
 
 async def download_file(url, path, file_name, file_type):
