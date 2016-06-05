@@ -30,7 +30,6 @@ except:
 from sys import modules
 
 client = discord.Client()
-imgur = ImgurClient('7a8c6a9c6a8b656','dc0cbbfc1d31c65c6c11ac9dff7fbd2001b837f3')
 
 def setup():
     f = open("credentials.txt", 'w+')
@@ -46,7 +45,23 @@ try:
 except:
     print('ERROR: \'credentials.txt\' not found!')
     setup()
-    sleep(5)
+    sleep(2)
+    sys.exit(0)
+
+try:
+    f = open('imgur.txt', 'r')
+    imgur_info = f.read().split(':')
+    f.close()
+    imgur = ImgurClient(imgur_info[0],imgur_info[0])
+except:
+    print('Register a imgur key at: https://api.imgur.com/oauth2/addclient')
+    print('''Select 'OAuth2 without url' ''')
+    f = open("imgur.txt", 'w+')
+    ID = input('Client ID: ')
+    Secret = input(' Client Secret: ')
+    f.write(ID+':'+Secret)
+    f.close()
+    sleep(2)
     sys.exit(0)
 
 @client.async_event
