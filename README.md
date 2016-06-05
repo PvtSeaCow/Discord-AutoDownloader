@@ -4,6 +4,8 @@
  - Get from here: [Rapptz/discord.py](https://github.com/Rapptz/discord.py)
 - ALSO REQUIRES REQUESTS  
  - type in command prompt `pip install requests`
+- ALSO REQUIRES IMGURPYTHON **(NEW)**
+ - type in command prompt `pip install imgurpython`
 
 #### Credentials
 1. Edit 'example-credentials.txt' (Login is in plain text, careful)
@@ -19,7 +21,9 @@ Running this bot acts as another login and will keep you online as long as this 
  - `(ROOT)/pictures/(Server Name)/(Channel Name)/[User]`  
 - This bot will download pictures from dms too:  
  - `(ROOT)/pictures/@pms/[User]`  
-
+- Imgur images will download to: **(NEW)**
+ - `(ROOT)/pictures/(Server Name)/(Channel Name)/(User)/(Album/Image ID)`
+ 
 () = Will always be made  
 [] = Will be made when the channel doesn't have lood/lewd/nsfw in the name or the server is not `Pillow Lounge`  
 (ROOT) = The folder the script is in.  
