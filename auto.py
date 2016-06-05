@@ -53,7 +53,7 @@ except:
 async def on_ready():
     subprocess.call('cls',shell=True)
     print('------')
-    print('Currently logged in as ['+client.user.name+' (ID: "'+client.user.id+'")]')
+    print('Auto Downloader (By Moe Sea Cow)\nCurrently logged in as ['+client.user.name+' (ID: "'+client.user.id+'")]')
     print('Number of Servers Connected: '+str(len(list(client.servers)))+'\nNumbers of DMs: '+str(len(list(client.private_channels))))
     print('------')
     await client.change_status(idle=True)
