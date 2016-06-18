@@ -106,7 +106,7 @@ async def on_message(message):
                     else:
                         thing = str(pic.link).split('/')
                         await download_file(str(pic.link), str(name), str(thing[-1].split('.')[-2]), str(thing[-1].split('.')[-1]))
-        elif (not message.channel.is_private) and ((message.embeds) or (message.attachments)) and (not message.channel.is_default) and (not imgurmatch):
+        elif (not message.channel.is_private) and ((message.embeds) or (message.attachments)) and (not imgurmatch):
             if 'nsfw' in message.channel.name or 'fap' in message.channel.name or 'lood' in message.channel.name or 'lewd' in message.channel.name or 'illow ' in str(message.server.name):
                 name = str(message.server.name)+'\\'+str(message.channel.name)
             else:
