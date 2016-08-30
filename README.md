@@ -39,8 +39,8 @@ Me ^_^ - for the coding ( ͡° ͜ʖ ͡°)
 
 
 If you have any questions or concerns  
-Join Anime Discord ([Invite Here](https://discord.gg/0jsnS27eGHfxNfQ7)) and message me
+~~Join Anime Discord ([Invite Here](https://discord.gg/0jsnS27eGHfxNfQ7)) and message me~~ (I am no longer in Anime Discord)
 
 
 ##### Disclaimer
-I am __NOT__ responsible for the files you download
+I am __NOT__ responsible for the files you download. You may download files that are not picture files and the file may be a virus. I am __NOT__ responsible if you happen to download a virus. Although I blocked downloading of exe's, some may slip by and will download.
